@@ -9,7 +9,7 @@ class Player {
       this.directionY = 0
       this.element = document.createElement('img')
   
-      this.element.src = '../images/walk.gif'
+      this.element.src = '../images/blink.gif'
   
       this.element.style.position = 'absolute'
       this.element.style.left = `${this.left}px`

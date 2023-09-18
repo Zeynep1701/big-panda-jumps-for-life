@@ -32,7 +32,7 @@ window.addEventListener('load', () => {
         game.player.directionY = 2
       }
     })
-  
+
     document.addEventListener('keyup', event => {
       console.log('up', event)
       if (
@@ -45,4 +45,4 @@ window.addEventListener('load', () => {
         game.player.directionY = 0
       }
     })
-  })
+})
