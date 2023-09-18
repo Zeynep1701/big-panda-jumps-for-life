@@ -40,6 +40,7 @@ class Player {
       } else if (this.top > this.gameScreen.clientHeight - 20 - this.height) {
         this.top = this.gameScreen.clientHeight - 20 - this.height
       } else {
+        console.log(this.directionY)
         this.top += this.directionY
       }
     }

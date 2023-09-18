@@ -26,18 +26,6 @@ class Game {
   gameLoop() {
     this.update()
 
-    if (this.animateId % 500 === 0) {
-      this.platform.push(
-        new Platform(
-          this.gameScreen,
-          Math.random() * (this.gameScreen.clientWidth - 40 - 100) + 50,
-          -200,
-          80,
-          40
-        )
-      )
-    }
-
     document.getElementById('lives').innerText = this.lives
 
     if (this.lives < 1) {
@@ -55,7 +43,17 @@ class Game {
   update() {
     this.player.move()
     console.log(this.platform)
-    const nextPlatform = []
+    if (this.animateId % 200 === 0) {
+      this.platform.push(
+        new Platform(
+          this.gameScreen,
+          Math.random() * (this.gameScreen.clientWidth - 40 - 100) + 50,
+          -200,
+          60,
+          100
+        )
+      )
+    }
     this.platform.forEach(obstaclePlatform => {
       obstaclePlatform.move()
       if (this.player.didCollide(obstaclePlatform)) {
@@ -64,10 +62,9 @@ class Game {
       } else if (this.platform.top > this.gameScreen.clientHeight) {
         this.score += 1
         this.platform.element.remove()
-      } else {
-        nextPlatform.push(platform)
-      }
+      } 
+        
+      
     })
-    this.platform = nextPlatform
   }
 }

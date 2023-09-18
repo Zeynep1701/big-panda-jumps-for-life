@@ -23,7 +23,6 @@ body {
   position: relative;
   background-image: url(../images/BG_01_Preview_Start.png);
   background-size: cover;
-  animation: slide 5s linear infinite;
 }
 
 @keyframes slide {

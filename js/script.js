@@ -21,15 +21,15 @@ window.addEventListener('load', () => {
   
     document.addEventListener('keydown', event => {
       console.log('down', event)
-      if (event.code === 'KeyA' || event.code === 'ArrowLeft') {
-        game.player.directionX = -1
-      } else if (event.code === 'KeyD' || event.code === 'ArrowRight') {
-        game.player.directionX = 1
+      if (event.code === 'KeyA') {
+        game.player.directionX = -2
+      } else if (event.code === 'KeyD') {
+        game.player.directionX = 2
       }
       if (event.code === 'KeyW') {
-        game.player.directionY = -1
+        game.player.directionY = -2
       } else if (event.code === 'KeyS') {
-        game.player.directionY = 1
+        game.player.directionY = 2
       }
     })
   
@@ -37,9 +37,7 @@ window.addEventListener('load', () => {
       console.log('up', event)
       if (
         event.code === 'KeyA' ||
-        event.code === 'KeyD' ||
-        event.code === 'ArrowLeft' ||
-        event.code === 'ArrowRight'
+        event.code === 'KeyD'
       ) {
         game.player.directionX = 0
       }
