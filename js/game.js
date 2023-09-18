@@ -1,79 +1,73 @@
-window.addEventListener('load', () => {
-    const startButton = document.getElementById('start-button')
-    const restartButton = document.getElementById('restart-button')
-  
-    let game
-  
-    function startGame() {
-      console.log('start game')
-      game = new Game()
-      game.start()
+class Game {
+  constructor() {
+    this.startScreen = document.getElementById('game-intro')
+    this.gameScreen = document.getElementById('game-screen')
+    this.gameEndScreen = document.getElementById('game-end')
+    this.height = 600
+    this.width = 500
+    this.player = new Player(this.gameScreen, 230, 550, 80, 40)
+    this.platform = []
+    this.animateId = 0
+    this.lives = 3
+    this.gameOver = false
+  }
+
+  start() {
+    this.startScreen.style.display = 'none'
+    this.gameEndScreen.style.display = 'none'
+    this.gameScreen.style.display = 'block'
+
+    this.gameScreen.style.height = `${this.height}px`
+    this.gameScreen.style.width = `${this.width}px`
+
+    this.gameLoop()
+  }
+
+  gameLoop() {
+    this.update()
+
+    if (this.animateId % 500 === 0) {
+      this.platform.push(
+        new Platform(
+          this.gameScreen,
+          Math.random() * (this.gameScreen.clientWidth - 40 - 100) + 50,
+          -200,
+          80,
+          40
+        )
+      )
     }
-  
-    startButton.addEventListener('click', function () {
-      startGame()
-    })
-  
-    restartButton.addEventListener('click', function () {
-      game.player.element.remove()
-      startGame()
-    })
-  
-    document.addEventListener('keydown', event => {
-      console.log('down', event)
-      if (event.code === 'KeyA' || event.code === 'ArrowLeft') {
-        game.player.directionX = -1
-      } else if (event.code === 'KeyD' || event.code === 'ArrowRight') {
-        game.player.directionX = 1
-      }
-      if (event.code === 'KeyW') {
-        game.player.directionY = -1
-      } else if (event.code === 'KeyS') {
-        game.player.directionY = 1
-      }
-    })
-  
-    document.addEventListener('keyup', event => {
-      console.log('up', event)
-      if (
-        event.code === 'KeyA' ||
-        event.code === 'KeyD' ||
-        event.code === 'ArrowLeft' ||
-        event.code === 'ArrowRight'
-      ) {
-        game.player.directionX = 0
-      }
-      if (event.code === 'KeyW' || event.code === 'KeyS') {
-        game.player.directionY = 0
-      }
-    })
-  })
-const gameContainer = document.getElementById('game-container');
-const timerElem = document.getElementById('timer');
-let timer = 60;
 
-startButton.addEventListener('click', startGame);
+    document.getElementById('lives').innerText = this.lives
 
-    // Start game loop, checking for game over condition
-    setInterval(() => {
-        if(timer <= 0) {
-            gameOver();
-        }
-        timer--;
-        timerElem.textContent = timer;
-    }, 1000);
+    if (this.lives < 1) {
+      this.gameOver = true
+    }
 
-function gameOver() {
-    alert("Game Over!");
-    // Play the theme song of "happy tree friends"
-    //  <audio> element in HTML and then play that audio here
+    if (this.gameOver) {
+      this.gameScreen.style.display = 'none'
+      this.gameEndScreen.style.display = 'block'
+    } else {
+      this.animateId = requestAnimationFrame(() => this.gameLoop())
+    }
+  }
+
+  update() {
+    this.player.move()
+    console.log(this.platform)
+    const nextPlatform = []
+    this.platform.forEach(obstaclePlatform => {
+      obstaclePlatform.move()
+      if (this.player.didCollide(obstaclePlatform)) {
+        this.lives -= 1
+        this.platform.element.remove()
+      } else if (this.platform.top > this.gameScreen.clientHeight) {
+        this.score += 1
+        this.platform.element.remove()
+      } else {
+        nextPlatform.push(platform)
+      }
+    })
+    this.platform = nextPlatform
+  }
 }
-//Timer logic
-setInterval(function() {
-timeLeft--;
-timer.textContent = timeLeft;
-if(timeLeft <=0 || pandaFellOffPlatform()) {
-    alert("Game Over");
-    location.reload();
-}
-}, 1000);

@@ -6,18 +6,9 @@ function initializePanda() {
     panda.style.left = `${pandaPosition.x}px`;
     panda.style.bottom = `${pandaPosition.y}px`;
 
-    document.addEventListener('keydown', (e) => {
-        if (gameStarted) {
-            if (e.key === 'A' || e.key === 'ArrowLeft') {
-                movePanda('left');
-            } else if (e.key === 'D' || e.key === 'ArrowRight') {
-                movePanda('right');
-            } else if (e.key === 'W' || e.key === 'ArrowUp') {
-                jumpPanda();
-            }
+   
         }
-    });
-}
+
 
 function movePanda(direction) {
     if (direction === 'left') {
