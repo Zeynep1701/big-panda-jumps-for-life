@@ -15,8 +15,7 @@ window.addEventListener('load', () => {
     })
   
     restartButton.addEventListener('click', function () {
-      game.player.element.remove()
-      startGame()
+      location.reload()
     })
   
     document.addEventListener('keydown', event => {
@@ -31,6 +30,10 @@ window.addEventListener('load', () => {
       } else if (event.code === 'KeyS') {
         game.player.directionY = 2
       }
+      if (event.code === 'Space') {
+        game.player.jumping = true;
+        game.player.jump();
+      }
     })
 
     document.addEventListener('keyup', event => {
@@ -43,6 +46,9 @@ window.addEventListener('load', () => {
       }
       if (event.code === 'KeyW' || event.code === 'KeyS') {
         game.player.directionY = 0
+      }
+      if (event.code === 'Space') {
+        game.player.jumping = false; 
       }
     })
 })

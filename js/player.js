@@ -7,6 +7,10 @@ class Player {
       this.width = width
       this.directionX = 0
       this.directionY = 0
+      this.yVelocity = 0;
+      this.jumping = false;
+      this.jumpHeight = -6;
+      this.gravity = 0.5;
       this.element = document.createElement('img')
   
       this.element.src = '../images/blink.gif'
@@ -21,10 +25,25 @@ class Player {
     }
   
     move() {
+      this.applyGravity();
       this.updatePosition()
       this.element.style.left = `${this.left}px`
       this.element.style.top = `${this.top}px`
     }
+
+    jump() {
+      if (!this.jumping) {
+        this.directionY = this.jumpHeight;
+        this.jumping = true;
+      }
+    }
+
+    applyGravity() {
+      // Apply gravity to the player's yVelocity
+      this.yVelocity += this.gravity;
+      this.top += this.yVelocity;
+    }
+  
   
     updatePosition() {
       if (this.left < 50) {
@@ -34,13 +53,24 @@ class Player {
       } else {
         this.left += this.directionX
       }
+
+      if (this.top < this.gameScreen.clientHeight - 20 - this.height && !this.jumping) {
+        this.directionY += this.gravity;
+      } else {
+        this.jumping = false;
+      }
+      this.yVelocity += this.gravity;
+      this.top += this.yVelocity;
+
+    
   
-      if (this.top < 20) {
-        this.top = 20
+      if (this.top >= this.gameScreen.clientHeight - 20 - this.height) {
+        this.top = this.gameScreen.clientHeight - 20 - this.height;
+        this.jumping = false;
       } else if (this.top > this.gameScreen.clientHeight - 20 - this.height) {
         this.top = this.gameScreen.clientHeight - 20 - this.height
       } else {
-        console.log(this.directionY)
+       // console.log(this.directionY)
         this.top += this.directionY
       }
     }
@@ -60,4 +90,4 @@ class Player {
         return false
       }
     }
-  }
+}
