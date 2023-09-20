@@ -7,7 +7,7 @@ class Platform {
       this.width = width
       this.element = document.createElement('img')
   
-      this.element.src = '../images/platform.png'
+      this.element.src = '../images/burger-sample.png'
   
       this.element.style.position = 'absolute'
       this.element.style.left = `${this.left}px`

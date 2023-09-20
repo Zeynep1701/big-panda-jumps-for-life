@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="./style.css" />
+  <audio id="game-music" preload="auto" loop>
+    <source src="./music/Fluffing a Duck Vanoss Gaming Background Music HD.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="game-over-music" preload="auto">
+    <source src="./music/Happy_Tree_Friends_Theme_Song.mp3" type="audio/mpeg">
+  </audio>
   <title>Big Panda Jumps For Life</title>
 </head>
 
@@ -16,8 +22,8 @@
       <img src="./images/logo_panda.png" alt="" class="logo-img" />
       <br />
       <button id="start-button">Start Game</button>
-      <p>Use the arrows to move the panda! Don't run out of time and collect apples!</p>
-      <img src="./images/arrows.png" alt="" class="arrows-img" />
+      <p>Use A, D and the spacebar to move me!</p>
+      <p>Remember, I'm a fluffy vegetarian and need more time to eat!</p>
     </div>
 
     <div id="game-container">
@@ -32,7 +38,7 @@
 
     <!-- #game-end is initially hidden using CSS style display: none -->
     <div id="game-end">
-      <img src="./images/logo_panda.png" alt="" class="logo-img" />
+      <img src="./images/falling-panda.gif" alt="" class="logo-gif" />
       <h1>Game Over</h1>
       <br />
       <button id="restart-button">Restart</button>

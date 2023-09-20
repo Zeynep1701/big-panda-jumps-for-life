@@ -13,7 +13,7 @@ class Player {
       this.gravity = 0.5;
       this.element = document.createElement('img')
   
-      this.element.src = '../images/blink.gif'
+      this.element.src = '../images/panda__1_.png'
   
       this.element.style.position = 'absolute'
       this.element.style.left = `${this.left}px`

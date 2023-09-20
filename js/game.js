@@ -9,6 +9,8 @@ class Game {
     this.player = new Player(this.gameScreen, 230, 550, 60, 40)
     this.player.directionY = 0
     this.platforms = []
+    this.platformSpeed = 1; 
+    this.speedIncrement = 0.01;
     this.apples = []
     this.animateId = 0
     this.lives = 3
@@ -16,6 +18,10 @@ class Game {
     this.timer = 20;
     this.intervalId = null
     this.gravity = 0.5;
+    this.onGameover = null;
+    this.gameOverMusicPlayed = false;
+    this.gameMusic = document.getElementById ('game-music');
+    this.gameMusicStopped = false;
   }
 
   start() {
@@ -41,17 +47,42 @@ class Game {
     document.getElementById('lives').innerText = this.lives
 
     if (this.lives < 1 || this.timer === 0) {
-      this.gameOver = true
+        this.gameOver = true
     }
 
     if (this.gameOver) {
-      this.gameScreen.style.display = 'none'
+    /*  if (!this.gameOverMusicPlayed) {
+        const gameOverMusic = document.getElementById('game-over-music');
+        gameOverMusic.play();
+        this.gameOverMusicPlayed = true;
+      }
+      if (!this.gameMusicStopped && !this.gameMusic.paused) {
+        this.gameMusic.pause();
+        this.gameMusicStopped = true;
+       }*/
+      const gameOverMusic = document.getElementById('game-over-music');
+      this.gameMusic.pause();
+      console.log(gameOverMusic)
+      gameOverMusic.play();
       this.gameEndScreen.style.display = 'block'
+    this.gameScreen.style.display = 'none'
     } else {
       this.player.move();
-      this.animateId = requestAnimationFrame(() => this.gameLoop())
+      this.animateId = requestAnimationFrame(() => this.gameLoop());
     }
   }
+  
+
+  gameover() {
+    this.gameOver = true
+    this.gameScreen.style.display = 'none'
+    this.gameEndScreen.style.display = 'block'
+    if (this.onGameover) {
+      this.onGameover();
+    }
+  }
+
+    
 
   update() {
     this.player.move()
@@ -62,8 +93,8 @@ class Game {
           this.gameScreen,
           Math.random() * (this.gameScreen.clientWidth - 40 - 100) + 50,
           -200,
-          60,
-          100
+          40,
+          60
         )
       )
     }
@@ -98,5 +129,5 @@ class Game {
         obstacleApple.element.remove()
       }
 })
-}}
-      
+}
+}   
