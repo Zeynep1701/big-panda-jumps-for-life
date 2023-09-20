@@ -32,7 +32,6 @@ window.addEventListener('load', () => {
       }
       if (event.code === 'Space') {
         game.player.jumping = true;
-        game.player.jump();
       }
     })
 

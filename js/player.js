@@ -25,7 +25,7 @@ class Player {
     }
   
     move() {
-      this.applyGravity();
+     // this.applyGravity();
       this.updatePosition()
       this.element.style.left = `${this.left}px`
       this.element.style.top = `${this.top}px`
@@ -38,8 +38,7 @@ class Player {
       }
     }
 
-    applyGravity() {
-      // Apply gravity to the player's yVelocity
+      applyGravity() {
       this.yVelocity += this.gravity;
       this.top += this.yVelocity;
     }
@@ -53,9 +52,18 @@ class Player {
       } else {
         this.left += this.directionX
       }
+      if(this.jumping) {
+        this.top -= 2
+      } else if (this.jumping === false && this.top <= 550) {
+        this.top += 2
+      }
+      
+      
+    
 
-      if (this.top < this.gameScreen.clientHeight - 20 - this.height && !this.jumping) {
-        this.directionY += this.gravity;
+
+      /*if (this.top < this.gameScreen.clientHeight - 20 - this.height && !this.jumping) {
+      this.directionY += this.gravity;
       } else {
         this.jumping = false;
       }
@@ -73,6 +81,7 @@ class Player {
        // console.log(this.directionY)
         this.top += this.directionY
       }
+      */
     }
   
     didCollide(obstacle) {

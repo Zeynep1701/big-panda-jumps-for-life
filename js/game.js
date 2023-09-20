@@ -93,7 +93,6 @@ class Game {
     this.apples.forEach(obstacleApple => {
       obstacleApple.move()
       if (this.player.didCollide(obstacleApple)) {
-        console.log("hello",this.timer)
         this.timer += 5
         this.timeElement.innerText = this.timer;
         obstacleApple.element.remove()
