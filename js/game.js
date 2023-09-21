@@ -3,6 +3,8 @@ class Game {
     this.startScreen = document.getElementById('game-intro')
     this.gameScreen = document.getElementById('game-screen')
     this.gameEndScreen = document.getElementById('game-end')
+    this.winScreen = document.getElementById('game-over-win')
+    this.loseScreen = document.getElementById('game-over-lose')
     this.timeElement = document.getElementById('time')
     this.height = 600
     this.width = 500
@@ -15,6 +17,8 @@ class Game {
     this.animateId = 0
     this.lives = 3
     this.gameOver = false
+    this.gameOverWin = false
+    this.gameOverLose = false
     this.timer = 20;
     this.intervalId = null
     this.gravity = 0.5;
@@ -48,9 +52,11 @@ class Game {
 
     if (this.lives < 1 || this.timer === 0) {
         this.gameOver = true
+        this.gameOverLose = true
     }
 
-    if (this.gameOver) {
+
+    if (this.gameOverLose) {
     /*  if (!this.gameOverMusicPlayed) {
         const gameOverMusic = document.getElementById('game-over-music');
         gameOverMusic.play();
@@ -65,8 +71,25 @@ class Game {
       console.log(gameOverMusic)
       gameOverMusic.play();
       this.gameEndScreen.style.display = 'block'
-    this.gameScreen.style.display = 'none'
-    } else {
+      this.winScreen.style.display = 'none'
+      this.loseScreen.style.display = 'block'
+      this.gameScreen.style.display = 'none'}
+      
+       
+
+      else if(this.timer === 25) {
+        this.gameOverWin = true
+        const gameOverMusic = document.getElementById('game-over-music');
+        this.gameMusic.pause();
+        console.log(gameOverMusic)
+        gameOverMusic.play();
+        this.gameEndScreen.style.display = 'block'
+        this.winScreen.style.display = 'block'
+        this.loseScreen.style.display = 'none'
+        this.gameScreen.style.display = 'none'}
+       
+
+     else {
       this.player.move();
       this.animateId = requestAnimationFrame(() => this.gameLoop());
     }
