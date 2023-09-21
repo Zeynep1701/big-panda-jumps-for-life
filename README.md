@@ -41,7 +41,7 @@ Big Panda Jumps For Life is a game where the panda should collect apples and avo
 
 ## script.js
 
-window.addEventListener()
+- window.addEventListener()
 - startGame() 
 - game.start()
 - gameMusic.play()
