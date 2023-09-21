@@ -6,7 +6,6 @@
 
 Big Panda Jumps For Life is a game where the panda should collect apples and avoid the burgers. It should also not run out of time. With each apple, the panda gains 5 more seconds. So when the time reaches 25 seconds, the panda wins. If the panda runs out of time or eats too many burgers, it looses.
 
-Kraken Brigade is a game where players try to defend a fort from the impending attack of sea creatures. The game ends when enough tentacles are stacked in front of the fort wall at the bottom of the screen. After the game ends, a score is calculated based on the amount of tentacles destroyed and the amount of time the game lasted.
 
 # Main Functionalities
 
@@ -38,7 +37,7 @@ Kraken Brigade is a game where players try to defend a fort from the impending a
 - Game Screen
 - Game Over Screen
 
-# Proyect Structure
+# Project Structure
 
 ## script.js
 
@@ -46,7 +45,6 @@ window.addEventListener()
 - startGame() 
 - game.start()
 - gameMusic.play()
-- gameMusic.volume = 0.2
 - game.onGameover() 
 - gameMusic.pause()
 - gameMusic.play()
@@ -91,8 +89,6 @@ window.addEventListener()
 
 - start() 
 - gameLoop()
-- document.getElementById(lives).innerText
-- document.getElementById(game-over-music)
 - gameOverMusic.play();
 - gameover() 
 - update()
