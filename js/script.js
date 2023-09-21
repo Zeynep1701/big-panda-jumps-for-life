@@ -11,6 +11,7 @@ window.addEventListener('load', () => {
       const gameMusic = document.getElementById('game-music')
       const gameOverMusic = document.getElementById('game-over-music')
       gameMusic.play()
+      gameMusic.volume = 0.2
 
       
       game.onGameover = () => {
