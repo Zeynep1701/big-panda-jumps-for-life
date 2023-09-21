@@ -84,6 +84,7 @@ class Game {
         this.gameMusic.pause();
         console.log(gameOverMusic)
         gameOverMusic.play();
+        gameOverMusic.volume = 0.2
         this.gameEndScreen.style.display = 'block'
         this.winScreen.style.display = 'block'
         this.loseScreen.style.display = 'none'
